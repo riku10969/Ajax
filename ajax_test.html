@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
+<title>document</title>
+</head>
+<body>
+    <input type="button" id="btn" value="ボタン">
+    <textarea id="a"></textarea>
+        <script type="text/javascript">
+    console.log($.fn.jquery);
+    $(function () {
+    $('#btn').click(function () {
+    $.ajax({
+        url: 'result_all.php',
+        dataType: 'json',
+        Type: 'GET',
+        data: {
+            id:2
+        },
+    }).done (function (data) {
+        var id = data.id;
+        var name = data.name;
+        var price = data.price;
+        var katamari = id+name+price;
+        $("#a").val(katamari);
+
+        console.log(data);
+    })
+    .fail(function (data) {
+        console.log('filed')
+    })
+;
+});
+});
+</script>
+</body>
+</html>
